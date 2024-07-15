@@ -1,10 +1,13 @@
+# seller.py
 from user import User
 from tabulate import tabulate
 from itertools import groupby
+from ownable import Ownable
 
-class Seller(User):
+class Seller(User, Ownable):
     def __init__(self, name):
-        super().__init__(name)
+        User.__init__(self, name)
+        Ownable.__init__(self, name)
         self.items_list = []  # Lista para almacenar los artículos del vendedor
 
     def mostrar_productos(self):
