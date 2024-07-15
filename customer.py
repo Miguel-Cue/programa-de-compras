@@ -13,5 +13,3 @@ class Customer(User):
     def show_items(self):
         for item in self.items:
             print(f"{item.name}: {item.price}")
-
-    # Otros métodos de la clase Customer si los hay
