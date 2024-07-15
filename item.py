@@ -13,3 +13,4 @@ class Item:
     @staticmethod
     def item_all():
         return Item.instances
+
