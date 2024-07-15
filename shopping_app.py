@@ -29,14 +29,14 @@ def main():
 
     customer.wallet.deposit(int(amount_str))  # Convierte la cantidad válida a entero y la deposita
 
-    print("🛍️ Comenzando compras...")
-
-    # Mostrar la lista de productos disponibles una sola vez al inicio
-    print("📜 Lista de productos disponibles:")
-    seller.mostrar_productos()
-
     end_shopping = False
     while not end_shopping:
+        print("🛍️ Comenzando compras...")
+
+        # Mostrar la lista de productos disponibles
+        print("📜 Lista de productos disponibles:")
+        seller.mostrar_productos()
+
         print("️️⛏ Ingresa el número del producto que deseas comprar:")
         number_str = input()
 
@@ -79,9 +79,9 @@ def main():
     # Mostrar el saldo del vendedor
     print(f"😻👛 Saldo actual en la billetera de {seller.name}: {seller.wallet.balance}")
 
-    # Mostrar el carrito
+    # Mostrar el carrito nuevamente
     print("🛒 Contenido del carrito:")
-    customer.cart.show_items()  # Mostrar los artículos en el carrito
+    customer.cart.show_items()  # Mostrar los artículos en el carrito nuevamente
     print(f"🌚 Total a pagar: {customer.cart.total_amount()}")
 
     print("🎉 Fin del programa")
