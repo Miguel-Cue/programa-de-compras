@@ -14,7 +14,7 @@ class Cart:
 
     def check_out(self):
         if self.owner.wallet.balance < self.total_amount():
-            print("Insufficient funds.")
+            print("Fondos insuficientes.")
             return
         
         for item in self.items:
