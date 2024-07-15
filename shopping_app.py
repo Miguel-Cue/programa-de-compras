@@ -79,9 +79,9 @@ def main():
     # Mostrar el saldo del vendedor
     print(f"😻👛 Saldo actual en la billetera de {seller.name}: {seller.wallet.balance}")
 
-    # Mostrar el carrito nuevamente
+    # Mostrar el carrito
     print("🛒 Contenido del carrito:")
-    customer.cart.show_items()  # Mostrar los artículos en el carrito nuevamente
+    customer.cart.show_items()  # Mostrar los artículos en el carrito
     print(f"🌚 Total a pagar: {customer.cart.total_amount()}")
 
     print("🎉 Fin del programa")
