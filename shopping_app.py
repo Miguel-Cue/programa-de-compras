@@ -4,8 +4,10 @@ from item import Item
 from seller import Seller
 
 def main():
-    # Crear instancia de Seller y agregar artículos
+    # Crear instancia de Seller y establecer el propietario
     seller = Seller("DICストア")
+    seller.set_owner("manager123") 
+
     seller.add_item(Item("CPU", 40830, seller))
     seller.add_item(Item("Memoria RAM", 13880, seller))
     seller.add_item(Item("Placa madre", 28980, seller))
@@ -23,11 +25,11 @@ def main():
 
     print("🏧 Ingresa la cantidad para cargar en tu billetera:")
     amount_str = input()
-    while not amount_str.isdigit():  # Verifica si la cadena contiene solo dígitos
+    while not amount_str.isdigit():
         print("⚠️ Por favor ingresa solo números. Intenta nuevamente:")
         amount_str = input()
 
-    customer.wallet.deposit(int(amount_str))  # Convierte la cantidad válida a entero y la deposita
+    customer.wallet.deposit(int(amount_str))
 
     end_shopping = False
     while not end_shopping:
@@ -40,20 +42,20 @@ def main():
         print("️️⛏ Ingresa el número del producto que deseas comprar:")
         number_str = input()
 
-        while not number_str.isdigit():  # Verifica si la cadena contiene solo dígitos
+        while not number_str.isdigit():
             print("⚠️ Por favor, ingresa un número válido. Intenta nuevamente:")
             number_str = input()
 
-        number = int(number_str)  # Convierte la cantidad válida a entero
+        number = int(number_str)
 
         print("⛏ Ingresa la cantidad de productos que deseas comprar:")
         quantity_str = input()
 
-        while not quantity_str.isdigit():  # Verifica si la cadena contiene solo dígitos
+        while not quantity_str.isdigit():
             print("⚠️ Por favor, ingresa un número válido. Intenta nuevamente:")
             quantity_str = input()
 
-        quantity = int(quantity_str)  # Convierte la cantidad válida a entero
+        quantity = int(quantity_str)
 
         items = seller.pick_items(number, quantity)
         for item in items:
@@ -73,7 +75,7 @@ def main():
     # Mostrar resultados finales
     print("୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ Resultado ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧")
     print(f"️🛍️ Artículos de {customer.name}:")
-    customer.cart.show_items()  # Mostrar los artículos en el carrito
+    customer.cart.show_items()
     print(f"😱👛 Saldo actual en la billetera de {customer.name}: {customer.wallet.balance}")
 
     # Mostrar el saldo del vendedor
@@ -81,7 +83,7 @@ def main():
 
     # Mostrar el carrito nuevamente
     print("🛒 Contenido del carrito:")
-    customer.cart.show_items()  # Mostrar los artículos en el carrito nuevamente
+    customer.cart.show_items()
     print(f"🌚 Total a pagar: {customer.cart.total_amount()}")
 
     print("🎉 Fin del programa")
