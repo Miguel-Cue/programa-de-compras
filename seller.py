@@ -8,7 +8,7 @@ class Seller(User, Ownable):
     def __init__(self, name):
         User.__init__(self, name)
         Ownable.__init__(self, name)
-        self.items_list = []  # Lista para almacenar los artículos del vendedor
+        self.items_list = []
 
     def mostrar_productos(self):
         datos_tabla = []
@@ -28,6 +28,8 @@ class Seller(User, Ownable):
         return stock
 
     def add_item(self, item):
+        if not item.is_owner(self):
+            raise PermissionError("No tienes permisos para agregar este ítem.")
         self.items_list.append(item)
 
     def pick_items(self, number, quantity):
