@@ -1,10 +1,13 @@
-class Item:
+# item.py
+from ownable import Ownable
+
+class Item(Ownable):
     instances = []
 
     def __init__(self, name, price, owner=None):
+        super().__init__(owner)
         self.name = name
         self.price = price
-        self.owner = owner  # Asignar directamente el propietario al atributo owner
         Item.instances.append(self)
 
     def label(self):
@@ -13,4 +16,3 @@ class Item:
     @staticmethod
     def item_all():
         return Item.instances
-
