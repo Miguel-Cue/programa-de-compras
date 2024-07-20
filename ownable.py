@@ -8,7 +8,7 @@ class Ownable:
 
     def require_owner(self, user):
         if not self.is_owner(user):
-            raise PermissionError("User does not have the necessary privileges.")
-    
+            raise PermissionError("El usuario no tiene los privilegios necesarios.")
+
     def set_owner(self, owner):
         self.owner = owner
