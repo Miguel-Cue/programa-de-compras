@@ -6,8 +6,12 @@ from seller import Seller
 def main():
     # Crear instancia de Seller y establecer el propietario
     seller = Seller("DICストア")
-    seller.set_owner("manager123") 
+    seller.set_owner("manager123")  # Establecer propietario
 
+    # Mostrar información del Ownable al inicio del programa
+    print(f"Ownable iniciado con propietario: {seller.owner}")
+
+    # Agregar artículos
     seller.add_item(Item("CPU", 40830, seller))
     seller.add_item(Item("Memoria RAM", 13880, seller))
     seller.add_item(Item("Placa madre", 28980, seller))
@@ -74,6 +78,7 @@ def main():
 
     # Mostrar resultados finales
     print("୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ Resultado ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧")
+    print("🎉 Resultado de la compra")
     print(f"️🛍️ Artículos de {customer.name}:")
     customer.cart.show_items()
     print(f"😱👛 Saldo actual en la billetera de {customer.name}: {customer.wallet.balance}")
@@ -81,7 +86,7 @@ def main():
     # Mostrar el saldo del vendedor
     print(f"😻👛 Saldo actual en la billetera de {seller.name}: {seller.wallet.balance}")
 
-    # Mostrar el carrito nuevamente
+    # Mostrar el carrito 
     print("🛒 Contenido del carrito:")
     customer.cart.show_items()
     print(f"🌚 Total a pagar: {customer.cart.total_amount()}")
