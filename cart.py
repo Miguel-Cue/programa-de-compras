@@ -1,6 +1,9 @@
-class Cart:
+# cart.py
+from ownable import Ownable
+
+class Cart(Ownable):
     def __init__(self, owner):
-        self.owner = owner
+        super().__init__(owner)
         self.items = []
 
     def items_list(self):
