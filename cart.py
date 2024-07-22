@@ -25,7 +25,7 @@ class Cart:
             item.owner = self.owner
         
         self.items = []
-        print("Checkout successful.")
+        print("Pago exitoso.")
 
     def show_items(self):
         if not self.items:
