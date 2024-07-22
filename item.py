@@ -1,13 +1,10 @@
-# item.py
-from ownable import Ownable
-
-class Item(Ownable):
+class Item:
     instances = []
 
     def __init__(self, name, price, owner=None):
-        super().__init__(owner)
         self.name = name
         self.price = price
+        self.owner = owner 
         Item.instances.append(self)
 
     def label(self):
