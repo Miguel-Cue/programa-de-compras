@@ -1,9 +1,8 @@
-# cart.py
-from ownable import Ownable
+from tabulate import tabulate
 
-class Cart(Ownable):
+class Cart:
     def __init__(self, owner):
-        super().__init__(owner)
+        self.owner = owner
         self.items = []
 
     def items_list(self):
@@ -32,6 +31,18 @@ class Cart(Ownable):
         if not self.items:
             print("El carrito está vacío.")
         else:
-            print("Contenido del carrito:")
-            for index, item in enumerate(self.items, start=1):
-                print(f"{index}. Nombre: {item.name}, Precio: {item.price}")
+            # Crear un diccionario para agrupar los productos por nombre
+            grouped_items = {}
+            for item in self.items:
+                if item.name in grouped_items:
+                    grouped_items[item.name]['quantity'] += 1
+                else:
+                    grouped_items[item.name] = {'price': item.price, 'quantity': 1}
+
+            # Crear los datos para el formato tabular
+            table_data = []
+            for index, (name, details) in enumerate(grouped_items.items(), start=1):
+                table_data.append([index, name, details['price'], details['quantity']])
+
+            # Mostrar los datos en formato tabular
+            print(tabulate(table_data, headers=["N°", "Producto", "Precio", "Cantidad"], tablefmt="grid"))
