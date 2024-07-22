@@ -2,19 +2,18 @@
 from user import User
 from tabulate import tabulate
 from itertools import groupby
-from ownable import Ownable
 
-class Seller(User, Ownable):
+class Seller(User):
     def __init__(self, name):
-        User.__init__(self, name)
-        Ownable.__init__(self, name)
-        self.items_list = []
+        super().__init__(name)
+        self.items_list = []  # Lista para almacenar los artículos del vendedor
 
     def mostrar_productos(self):
-        datos_tabla = []
-        for stock in self._stock():
-            datos_tabla.append([stock['number'], stock['label']['name'], stock['label']['price'], len(stock['items'])])
-        print(tabulate(datos_tabla, headers=["Número", "Nombre del Producto", "Precio", "Cantidad"], tablefmt="grid"))
+        headers = ["Número", "Nombre", "Precio"]
+        table = []
+        for index, item in enumerate(self.items_list):
+            table.append([index, item.name, item.price])
+        print(tabulate(table, headers=headers, tablefmt="grid"))
 
     def _stock(self):
         lista_de_items = self.items_list
@@ -28,8 +27,6 @@ class Seller(User, Ownable):
         return stock
 
     def add_item(self, item):
-        if not item.is_owner(self):
-            raise PermissionError("No tienes permisos para agregar este ítem.")
         self.items_list.append(item)
 
     def pick_items(self, number, quantity):
