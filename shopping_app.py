@@ -27,7 +27,7 @@ def main():
         print("⚠️ Por favor ingresa solo números. Intenta nuevamente:")
         amount_str = input()
 
-    customer.wallet.deposit(int(amount_str))  
+    customer.wallet.deposit(int(amount_str))  # Convierte la cantidad válida a entero y la deposita
 
     print("🛍️ Comenzando compras...")
 
@@ -47,7 +47,7 @@ def main():
             print("⚠️ Por favor, ingresa un número válido. Intenta nuevamente:")
             number_str = input()
 
-        number = int(number_str) 
+        number = int(number_str)  # Convierte la cantidad válida a entero
 
         print("⛏ Ingresa la cantidad de productos que deseas comprar:")
         quantity_str = input()
@@ -56,7 +56,7 @@ def main():
             print("⚠️ Por favor, ingresa un número válido. Intenta nuevamente:")
             quantity_str = input()
 
-        quantity = int(quantity_str)  
+        quantity = int(quantity_str)  # Convierte la cantidad válida a entero
 
         items = seller.pick_items(number, quantity)
         for item in items:
@@ -78,7 +78,7 @@ def main():
         total_amount = customer.cart.total_amount()
         if customer.wallet.withdraw(total_amount) == total_amount:
             seller.wallet.deposit(total_amount)
-            print("Checkout successful.")
+            print("Pago exitoso.")
         else:
             print("😱 No hay suficiente saldo en la billetera para completar la compra.")
 
