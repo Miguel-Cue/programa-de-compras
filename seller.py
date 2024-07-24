@@ -2,17 +2,18 @@
 from user import User
 from tabulate import tabulate
 from itertools import groupby
+from item import Item
 
 class Seller(User):
     def __init__(self, name):
         super().__init__(name)
-        self.items_list = []  # Lista para almacenar los artículos del vendedor
+        self.items_list = []
 
     def mostrar_productos(self):
-        headers = ["Número", "Nombre", "Precio"]
+        headers = ["Número", "Nombre", "Precio", "Cantidad"]
         table = []
         for index, item in enumerate(self.items_list):
-            table.append([index, item.name, item.price])
+            table.append([index, item.name, item.price, item.quantity])
         print(tabulate(table, headers=headers, tablefmt="grid"))
 
     def _stock(self):
@@ -31,9 +32,14 @@ class Seller(User):
 
     def pick_items(self, number, quantity):
         selected_items = []
-        index = 0
-        for item in self.items_list:
-            if index == number:
-                selected_items.extend([item] * quantity)
-            index += 1
+        if 0 <= number < len(self.items_list):
+            item = self.items_list[number]
+            if item.quantity >= quantity:
+                item.quantity -= quantity
+                for _ in range(quantity):
+                    selected_items.append(Item(item.name, item.price, item.owner, 1))
+            else:
+                print("Cantidad insuficiente disponible.")
+        else:
+            print("Número de producto inválido.")
         return selected_items
