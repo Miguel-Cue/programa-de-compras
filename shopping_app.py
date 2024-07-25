@@ -77,8 +77,8 @@ def main():
     if input() == "yes":
         total_amount = customer.cart.total_amount()
         if customer.wallet.withdraw(total_amount) == total_amount:
-            if customer.cart.check_out():  # Solo imprimir "Pago exitoso" si el checkout fue exitoso
-                print("Pago exitoso.")
+            seller.wallet.deposit(total_amount)
+            print("Pago exitoso.")
         else:
             print("😱 No hay suficiente saldo en la billetera para completar la compra.")
 
@@ -86,7 +86,7 @@ def main():
     print("୨୧┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈ Resultado ┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈┈୨୧")
     print(f"️🛍️ Artículos de {customer.name}:")
     customer.cart.show_items()  # Mostrar los artículos en el carrito
-    print(f"😱👛 Saldo actual en la billetera de {customer.name}: {customer.wallet.balance}")
+    print(f"😱👛 Saldo actual en la billetera de {customer.name}: {customer.wallet.balance}")  # Mostrar el saldo actual del cliente
 
     # Mostrar el saldo del vendedor
     print(f"😻👛 Saldo actual en la billetera de {seller.name}: {seller.wallet.balance}")
@@ -94,6 +94,18 @@ def main():
     # Mostrar el total a pagar al final
     print(f"🌚 Total a pagar: {total_amount}")
 
+    print("📜 Lista de productos disponibles:")
+    seller.mostrar_productos()
+
+    # Mostrar el carrito vacío
+    print("🛒 Contenido del carrito:")
+    print("+------+-----------------+----------+------------+")
+    print("|   N° | Producto        |   Precio |   Cantidad |")
+    print("+======+=================+==========+============+")
+    print("|======|=================|==========|============|")
+    print("+------+-----------------+----------+------------+")
+    print("🌚 Total a pagar: 0")
+    
     print("🎉 Fin del programa")
 
 if __name__ == "__main__":
